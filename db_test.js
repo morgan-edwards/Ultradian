@@ -49,3 +49,34 @@ Task.create({
   time: 500,
   completed: false
 });
+
+//Here's the basic query syntax
+Task.find({title: 'whatever'}, function(err, docs) {
+  const documents = docs;
+});
+
+//To create documents
+const thing = new Task({
+  name: 'name',
+  time: 69,
+  completed: true
+});
+
+thing.save(function(err, savedTask) {
+  if (err) {
+    next(err);
+  } else {
+    res.json(savedTask);
+  }
+});
+
+//or combine both steps
+Task.create({
+  name: 'name',
+  time: 69,
+  completed: true
+}, function(err, savedTask) {CB logic...});
+
+//To update a document
+Task.findByIdAndUpdate('696969420', {name: 'new name'}, function(err, updatedDoc) { logic });
+//this will replace the entire object with whatever is passed in
